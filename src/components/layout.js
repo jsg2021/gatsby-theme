@@ -1,0 +1,49 @@
+import React from "react"
+import { Global } from "@emotion/core"
+import { Main, Styled, Container, css } from "theme-ui"
+
+import CodeStyles from "../styles/code"
+
+import SEO from "./seo"
+import Header from "./header"
+import Footer from "./footer"
+import SkipNavLink from "./skip-nav"
+
+import "typeface-ibm-plex-sans"
+
+const Layout = ({ children, className }) => (
+  <Styled.root data-testid="theme-root">
+    <Global
+      styles={css({
+        "*": {
+          boxSizing: `inherit`,
+        },
+        body: {
+          margin: 0,
+          padding: 0,
+          boxSizing: `border-box`,
+          textRendering: `optimizeLegibility`,
+        },
+        "::selection": {
+          backgroundColor: `primary`,
+          color: `white`,
+        },
+        a: {
+          transition: `all 0.3s ease-in-out`,
+          color: `text`,
+        },
+      })}
+    />
+    <SEO />
+    <SkipNavLink>Skip to content</SkipNavLink>
+    <Container>
+      <Header />
+      <Main id="skip-nav" css={css({ ...CodeStyles })} className={className}>
+        {children}
+      </Main>
+      <Footer />
+    </Container>
+  </Styled.root>
+)
+
+export default Layout
