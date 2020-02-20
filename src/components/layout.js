@@ -1,15 +1,14 @@
 import React from "react"
 import { Global } from "@emotion/core"
-import { Main, Styled, Container, css } from "theme-ui"
+import { Box, Styled, Container, css } from "theme-ui"
+import "typeface-ibm-plex-sans"
 
 import CodeStyles from "../styles/code"
 
 import SEO from "./seo"
 import Header from "./header"
 import Footer from "./footer"
-import SkipNavLink from "./skip-nav"
 
-import "typeface-ibm-plex-sans"
 
 const Layout = ({ children, className }) => (
   <Styled.root data-testid="theme-root">
@@ -35,12 +34,11 @@ const Layout = ({ children, className }) => (
       })}
     />
     <SEO />
-    <SkipNavLink>Skip to content</SkipNavLink>
     <Container>
       <Header />
-      <Main id="skip-nav" css={css({ ...CodeStyles })} className={className}>
+      <Box as="main" css={css({ ...CodeStyles })} className={className}>
         {children}
-      </Main>
+      </Box>
       <Footer />
     </Container>
   </Styled.root>

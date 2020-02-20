@@ -1,48 +1,42 @@
 import { tailwind } from "@theme-ui/presets"
+import merge from 'lodash.merge'
 
 const headingStyles = {
   h1: {
-    ...tailwind.styles.h1,
     color: `heading`,
     fontSize: [5, 6, 7],
     mt: 2,
   },
   h2: {
-    ...tailwind.styles.h2,
     color: `heading`,
     fontSize: [4, 5, 6],
     mt: 2,
   },
   h3: {
-    ...tailwind.styles.h3,
     color: `heading`,
     fontSize: [3, 4, 5],
     mt: 3,
   },
   h4: {
-    ...tailwind.styles.h4,
     color: `heading`,
     fontSize: [2, 3, 4],
   },
   h5: {
-    ...tailwind.styles.h5,
     color: `heading`,
     fontSize: [1, 2, 3],
   },
   h6: {
-    ...tailwind.styles.h6,
     color: `heading`,
     fontSize: 1,
     mb: 2,
   },
 }
 
-export default {
-  ...tailwind,
+export default merge(tailwind, {
   initialColorMode: `light`,
+  useColorSchemeMediaQuery: true,
   useCustomProperties: true,
   colors: {
-    ...tailwind.colors,
     primary: tailwind.colors.purple[7],
     secondary: `#5f6c80`,
     toggleIcon: tailwind.colors.gray[8],
@@ -60,14 +54,14 @@ export default {
       },
     },
   },
+  sizes: {
+    container: 1024
+  },
   fonts: {
-    ...tailwind.fonts,
     body: `"IBM Plex Sans", -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
   },
   styles: {
-    ...tailwind.styles,
     root: {
-      ...tailwind.styles.root,
       color: `text`,
       backgroundColor: `background`,
     },
@@ -151,4 +145,4 @@ export default {
       color: `text`,
     },
   },
-}
+})
