@@ -54,8 +54,15 @@ export default merge(tailwind, {
       },
     },
   },
+  images: {
+    banner: {
+
+    },
+    'blog-list': {
+    },
+  },
   sizes: {
-    container: 1024
+    container: 1024,
   },
   fonts: {
     body: `"IBM Plex Sans", -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,

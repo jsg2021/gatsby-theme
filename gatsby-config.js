@@ -21,7 +21,8 @@ const gatsbyRemarkPlugins = [
 ];
 
 module.exports = themeOptions => {
-  const { mdx = true, postsPath, pagesPath, feedTitle } = withDefaults(themeOptions)
+  const { postsPath, pagesPath } = withDefaults(themeOptions);
+  const { mdx = true, feedTitle } = themeOptions;
   return {
     plugins: [
       {

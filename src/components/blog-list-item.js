@@ -1,25 +1,37 @@
 /** @jsx jsx */
 import React from "react"
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, Image } from "theme-ui"
 import { Box } from "@theme-ui/components"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import ItemTags from "./item-tags"
 
-// type BlogListItemProps = {
-//   post: {
-//     slug: string
-//     title: string
-//     date: string
-//     tags?: {
-//       name: string
-//       slug: string
-//     }[]
-//   }
-//   showTags?: boolean
-// }
+export const query = graphql`
+  fragment postListItemFields on Post {
+    banner {
+      childImageSharp {
+        resize(width: 128, height: 96, cropFocus: ENTROPY, quality: 90, fit: COVER) {
+          src
+        }
+      }
+    }
+    date(formatString: "MMMM D, YYYY")
+    description
+    excerpt
+    slug
+    tags {
+      name
+      slug
+    }
+    timeToRead
+    title
+  }
+`;
 
 const BlogListItem = ({ post, showTags = true }) => (
   <Box mb={4}>
+    {post.banner && (
+      <Image variant='blog-list' src={post.banner.childImageSharp.resize.src} />
+    )}
     <Styled.a as={Link} to={post.slug} sx={{ fontSize: [1, 2, 3], color: `text` }}>
       {post.title}
     </Styled.a>

@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { graphql } from 'gatsby'
+import { jsx, Styled, Image } from "theme-ui"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import Layout from "./layout"
@@ -9,8 +10,34 @@ import SEO from "./seo"
 const px = [`32px`, `16px`, `8px`, `4px`]
 const shadow = px.map(v => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 
+export const query = graphql`
+    fragment postFields on Post {
+      banner {
+        childImageSharp {
+          resize(width: 1200, height: 675, quality: 90, cropFocus: ENTROPY, fit: COVER) {
+            src
+          }
+        }
+      }
+      body
+      date(formatString: "MMMM D, YYYY")
+      description
+      excerpt
+      slug
+      tags {
+        name
+        slug
+      }
+      timeToRead
+      title
+    }
+`;
+
 const Post = ({ data: { post } }) => (
   <Layout>
+    {post.banner && (
+      <Image variant='banner' src={post.banner.childImageSharp.resize.src} />
+    )}
     <SEO
       title={post.title}
       description={post.description ? post.description : post.excerpt}
