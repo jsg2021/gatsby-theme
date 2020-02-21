@@ -9,13 +9,12 @@ export const query = graphql`
   fragment postListItemFields on Post {
     banner {
       childImageSharp {
-        resize(width: 128, height: 96, cropFocus: ENTROPY, quality: 90, fit: COVER) {
+        resize(width: 360, quality: 90) {
           src
         }
       }
     }
     date(formatString: "MMMM D, YYYY")
-    description
     excerpt
     slug
     tags {
@@ -28,9 +27,24 @@ export const query = graphql`
 `;
 
 const BlogListItem = ({ post, showTags = true }) => (
-  <Box mb={4}>
+  <Box mb={4} sx={{ clear: 'both', position: 'relative', overflow: 'hidden' }}>
     {post.banner && (
-      <Image variant='blog-list' src={post.banner.childImageSharp.resize.src} />
+      <div
+        sx={{
+          mr: 3,
+          width: [50, 75],
+          height: [50, 75],
+          // paddingTop: ['56%', 0],
+          display: 'block',
+          float: 'left',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          borderRadius: 100
+        }}
+        style={{
+          backgroundImage: `url(${post.banner.childImageSharp.resize.src})`
+        }}
+      />
     )}
     <Styled.a as={Link} to={post.slug} sx={{ fontSize: [1, 2, 3], color: `text` }}>
       {post.title}

@@ -55,11 +55,9 @@ export default merge(tailwind, {
     },
   },
   images: {
-    banner: {
-
-    },
-    'blog-list': {
-    },
+    hero: {
+      marginTop: [-5, -6]
+    }
   },
   sizes: {
     container: 1024,

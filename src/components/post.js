@@ -14,7 +14,7 @@ export const query = graphql`
     fragment postFields on Post {
       banner {
         childImageSharp {
-          resize(width: 1200, height: 675, quality: 90, cropFocus: ENTROPY, fit: COVER) {
+          resize(width: 1200, quality: 90) {
             src
           }
         }
@@ -23,6 +23,13 @@ export const query = graphql`
       date(formatString: "MMMM D, YYYY")
       description
       excerpt
+      hero {
+        childImageSharp {
+          resize(width: 1200, height: 675, quality: 90, cropFocus: ENTROPY, fit: COVER) {
+            src
+          }
+        }
+      }
       slug
       tags {
         name
@@ -35,8 +42,8 @@ export const query = graphql`
 
 const Post = ({ data: { post } }) => (
   <Layout>
-    {post.banner && (
-      <Image variant='banner' src={post.banner.childImageSharp.resize.src} />
+    {post.hero && (
+      <Image variant='hero' src={post.hero.childImageSharp.resize.src} />
     )}
     <SEO
       title={post.title}

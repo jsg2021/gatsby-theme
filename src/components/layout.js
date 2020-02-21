@@ -1,6 +1,7 @@
+/** @jsx jsx */
 import React from "react"
 import { Global } from "@emotion/core"
-import { Box, Styled, Container, css } from "theme-ui"
+import { Box, Styled, Container, css, jsx } from "theme-ui"
 import "typeface-ibm-plex-sans"
 
 import CodeStyles from "../styles/code"
@@ -34,7 +35,7 @@ const Layout = ({ children, className }) => (
       })}
     />
     <SEO />
-    <Container>
+    <Container sx={{ p: 3 }}>
       <Header />
       <Box as="main" css={css({ ...CodeStyles })} className={className}>
         {children}
