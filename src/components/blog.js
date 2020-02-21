@@ -20,8 +20,9 @@ import SEO from "./seo"
 //   }[]
 // }
 
-const Blog = ({ posts }) => {
+const Blog = ({ posts, pageContext }) => {
   const { tagsPath, basePath } = useMinimalBlogConfig()
+  console.log(pageContext);
 
   return (
     <Layout>

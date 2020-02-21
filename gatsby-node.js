@@ -286,12 +286,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   })
 
   createPage({
-    path: `/${basePath}/${blogPath}`.replace(/\/\/+/g, `/`),
-    component: blogTemplate,
-  })
-
-  createPage({
-    path: `/${basePath}/${tagsPath}`.replace(/\/\/+/g, `/`),
+    path: path.join(basePath, tagsPath),
     component: tagsTemplate,
   })
 
@@ -320,7 +315,31 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
     return
   }
 
+  // createPage({
+  //   path: path.join(basePath, blogPath)
+  //   component: blogTemplate,
+  // })
+
   const posts = result.data.allPost.nodes
+  const postsPerPage = 6
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  const getPagePath = x => path.join(basePath, blogPath, x === 0 ? '' : `${x + 1}`);
+  const postListPages = Array.from({ length: numPages }).map((_, x) => getPagePath(x));
+  for (let i = 0; i < numPages; i++) {
+    createPage({
+      path: postListPages[i],
+      component: blogTemplate,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        pages: postListPages,
+        currentPage: i + 1,
+        nextPage: postListPages[i + 1],
+        prevPage: postListPages[i - 1],
+      },
+    })
+  }
 
   posts.forEach(post => {
     createPage({
@@ -337,7 +356,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   if (pages.length > 0) {
     pages.forEach(page => {
       createPage({
-        path: `/${basePath}/${page.slug}`.replace(/\/\/+/g, `/`),
+        path: path.join(basePath, page.slug),
         component: pageTemplate,
         context: {
           slug: page.slug,
@@ -351,7 +370,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   if (tags.length > 0) {
     tags.forEach(tag => {
       createPage({
-        path: `/${basePath}/${tagsPath}/${kebabCase(tag.fieldValue)}`.replace(/\/\/+/g, `/`),
+        path: path.join(basePath, tagsPath, kebabCase(tag.fieldValue)),
         component: tagTemplate,
         context: {
           slug: kebabCase(tag.fieldValue),

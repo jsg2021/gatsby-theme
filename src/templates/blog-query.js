@@ -2,16 +2,16 @@ import React from 'react';
 import { graphql } from "gatsby"
 import Blog from "../components/blog"
 
-export default ({ data }) => {
+export default ({ data, ...props }) => {
   const { allPost } = data
-
-  return <Blog posts={allPost.nodes} />
+  return <Blog posts={allPost.nodes} {...props} />
 }
 
 export const query = graphql`
-  query {
+query blogListQuery($skip: Int!, $limit: Int!) {
     allPost(
-      limit: 10
+      limit: $limit
+      skip: $skip
       filter: { draft: { ne: true } }
       sort: { fields: date, order: DESC }
     ) {
