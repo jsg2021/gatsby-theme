@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
-import { Link } from "gatsby"
-import { Flex } from "@theme-ui/components"
-import Layout from "./layout"
-import Listing from "./listing"
-import useMinimalBlogConfig from "../hooks/use-minimal-blog-config"
-import replaceSlashes from "../utils/replaceSlashes"
-import SEO from "./seo"
-import Pager from "./pager"
+import { jsx, Styled } from 'theme-ui';
+import { Link } from 'gatsby';
+import { Flex } from '@theme-ui/components';
+import Layout from './layout';
+import Listing from './listing';
+import useMinimalBlogConfig from '../hooks/use-minimal-blog-config';
+import replaceSlashes from '../utils/replaceSlashes';
+import SEO from './seo';
+import Pager from './pager';
 
 // type PostsProps = {
 //   posts: {
@@ -22,22 +22,22 @@ import Pager from "./pager"
 // }
 
 const Blog = ({ posts, pageContext }) => {
-  const { tagsPath, basePath } = useMinimalBlogConfig()
-  console.log(pageContext);
-  return (
-    <Layout>
-      <SEO title="Blog" />
-      <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
-        <Styled.h2>Blog</Styled.h2>
-        <Styled.a as={Link} sx={{ variant: `links.secondary` }} to={replaceSlashes(`/${basePath}/${tagsPath}`)}>
-          View all tags
-        </Styled.a>
-      </Flex>
-      <Listing posts={posts} sx={{ mt: [4, 5] }}>
-        <Pager {...pageContext} />
-      </Listing>
-    </Layout>
-  )
-}
+	const { tagsPath, basePath } = useMinimalBlogConfig();
+	console.log(pageContext);
+	return (
+		<Layout>
+			<SEO title="Blog" />
+			<Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
+				<Styled.h2>Blog</Styled.h2>
+				<Styled.a as={Link} sx={{ variant: `links.secondary` }} to={replaceSlashes(`/${basePath}/${tagsPath}`)}>
+					View all tags
+				</Styled.a>
+			</Flex>
+			<Listing posts={posts} sx={{ mt: [4, 5] }}>
+				<Pager {...pageContext} />
+			</Listing>
+		</Layout>
+	);
+};
 
-export default Blog
+export default Blog;

@@ -6,10 +6,10 @@
  * @yeilds {number} The next number in the range
  */
 export function* range(start, end) {
-    let x = start;
-    while (x++ < end) {
-        yield x;
-    }
+	let x = start;
+	while (x++ < end) {
+		yield x;
+	}
 }
 
 /**
@@ -27,13 +27,13 @@ export function* range(start, end) {
  * @yeilds {*} The next value in the iteration.
  */
 export function* generateItems(iter, render) {
-    if (typeof iter === 'number') {
-        iter = range(0, iter);
-    }
+	if (typeof iter === 'number') {
+		iter = range(0, iter);
+	}
 
-    for (const x of iter) {
-        yield render(x);
-    }
+	for (const x of iter) {
+		yield render(x);
+	}
 }
 
 /**
@@ -46,13 +46,13 @@ export function* generateItems(iter, render) {
  * @yeilds {number} The next number in the windowed range
  */
 export function computeRangeWindow(windowSize, currentIndex, total) {
-    const start = Math.max(0, currentIndex - Math.ceil(windowSize / 2));
-    const end = Math.min(start + windowSize, total);
-    const size = start - end;
-    return range(
-        (size < windowSize)
-            ? end - windowSize // backfill
-            : start,
-        end
-    );
+	const start = Math.max(0, currentIndex - Math.ceil(windowSize / 2));
+	const end = Math.min(start + windowSize, total);
+	const size = start - end;
+	return range(
+		size < windowSize
+			? end - windowSize // backfill
+			: start,
+		end,
+	);
 }
