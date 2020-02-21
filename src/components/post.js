@@ -40,7 +40,9 @@ export const query = graphql`
 	}
 `;
 
-const Post = ({ data: { post } }) => (
+const None = () => null;
+
+const Post = ({ children, data: { post }, renderCommentCount = None }) => (
 	<Layout>
 		{post.hero && <Image variant="hero" src={post.hero.childImageSharp.resize.src} />}
 		<SEO
@@ -51,6 +53,7 @@ const Post = ({ data: { post } }) => (
 		<Styled.h2>{post.title}</Styled.h2>
 		<p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>
 			<time>{post.date}</time>
+			{renderCommentCount()}
 			{post.tags && (
 				<React.Fragment>
 					{` — `}
@@ -63,6 +66,7 @@ const Post = ({ data: { post } }) => (
 		<section sx={{ my: 5, '.gatsby-resp-image-wrapper': { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
 			<MDXRenderer>{post.body}</MDXRenderer>
 		</section>
+		{children}
 	</Layout>
 );
 

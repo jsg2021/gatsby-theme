@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Post from '../components/post';
 
-export default ({ data }) => {
-	const { post } = data;
+export default props => {
+	const { post } = props.data || {};
 
-	return <Post data={{ ...data, post }} />;
+	return <Post {...props} post={post} />;
 };
 
 export const query = graphql`
