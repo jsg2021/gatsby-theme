@@ -7,6 +7,7 @@ import Listing from "./listing"
 import useMinimalBlogConfig from "../hooks/use-minimal-blog-config"
 import replaceSlashes from "../utils/replaceSlashes"
 import SEO from "./seo"
+import Pager from "./pager"
 
 // type PostsProps = {
 //   posts: {
@@ -23,7 +24,6 @@ import SEO from "./seo"
 const Blog = ({ posts, pageContext }) => {
   const { tagsPath, basePath } = useMinimalBlogConfig()
   console.log(pageContext);
-
   return (
     <Layout>
       <SEO title="Blog" />
@@ -33,7 +33,9 @@ const Blog = ({ posts, pageContext }) => {
           View all tags
         </Styled.a>
       </Flex>
-      <Listing posts={posts} sx={{ mt: [4, 5] }} />
+      <Listing posts={posts} sx={{ mt: [4, 5] }}>
+        <Pager {...pageContext} />
+      </Listing>
     </Layout>
   )
 }

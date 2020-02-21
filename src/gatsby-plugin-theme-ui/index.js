@@ -134,6 +134,16 @@ export default merge(tailwind, {
     },
   },
   links: {
+    nav: {
+      px: 2,
+      py: 1,
+      // textTransform: 'uppercase',
+      letterSpacing: '0.2em',
+      "&[disabled]": {
+        opacity: 0.3,
+        pointerEvents: 'none'
+      }
+    },
     secondary: {
       color: `secondary`,
       textDecoration: `none`,

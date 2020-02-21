@@ -16,11 +16,12 @@ import BlogListItem from "./blog-list-item"
 //   showTags?: boolean
 // }
 
-const Listing = ({ posts, className, showTags = true }) => (
+const Listing = ({ children, posts, className, showTags = true }) => (
   <section sx={{ mb: [5, 6, 7] }} className={className}>
     {posts.map(post => (
       <BlogListItem key={post.slug} post={post} showTags={showTags} />
     ))}
+    {children}
   </section>
 )
 
