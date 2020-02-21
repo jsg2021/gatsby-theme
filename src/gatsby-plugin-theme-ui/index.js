@@ -42,6 +42,7 @@ export default merge(tailwind, {
     toggleIcon: tailwind.colors.gray[8],
     heading: tailwind.colors.black,
     divide: tailwind.colors.gray[4],
+    tagCloud: tailwind.colors.gray[2],
     modes: {
       dark: {
         text: tailwind.colors.gray[4],
@@ -51,6 +52,7 @@ export default merge(tailwind, {
         background: `#1A202C`,
         heading: tailwind.colors.white,
         divide: tailwind.colors.gray[8],
+        tagCloud: tailwind.colors.black,
       },
     },
   },
@@ -159,5 +161,14 @@ export default merge(tailwind, {
       fontSize: [1, 2, 3],
       color: `text`,
     },
+    tagCloud: {
+      fontSize: [1, 2, 3],
+      color: 'text',
+      borderRadius: 5,
+      backgroundColor: 'tagCloud',
+      mr: 2,
+      pl: 2,
+      pr: 2,
+    }
   },
 })

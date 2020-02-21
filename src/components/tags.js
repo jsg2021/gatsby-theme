@@ -15,19 +15,23 @@ const Tags = ({ list }) => {
     <Layout>
       <SEO title="Tags" />
       <Styled.h2>Tags</Styled.h2>
-      <Box mt={[4, 5]}>
+      <Flex mt={[4, 5]} sx={{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+      }}>
         {list.map(listItem => (
           <Flex key={listItem.fieldValue} mb={[1, 1, 2]} sx={{ alignItems: `center` }}>
             <Styled.a
               as={Link}
-              sx={{ variant: `links.listItem`, mr: 2 }}
+              sx={{ variant: 'links.tagCloud' }}
               to={replaceSlashes(`/${basePath}/${tagsPath}/${kebabCase(listItem.fieldValue)}`)}
             >
               {listItem.fieldValue} <span sx={{ color: `secondary` }}>({listItem.totalCount})</span>
             </Styled.a>
           </Flex>
         ))}
-      </Box>
+      </Flex>
     </Layout>
   )
 }
