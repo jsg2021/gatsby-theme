@@ -27,7 +27,7 @@ export const query = graphql`
 `;
 
 const BlogListItem = ({ post, showTags = true }) => (
-  <Box mb={4} sx={{ clear: 'both', position: 'relative', overflow: 'hidden' }}>
+  <Box mb={4} sx={{ clear: 'both', position: 'relative' }}>
     {post.banner && (
       <div
         sx={{
@@ -39,7 +39,8 @@ const BlogListItem = ({ post, showTags = true }) => (
           float: 'left',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          borderRadius: 100
+          borderRadius: 100,
+          boxShadow: 'default'
         }}
         style={{
           backgroundImage: `url(${post.banner.childImageSharp.resize.src})`
