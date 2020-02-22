@@ -23,7 +23,6 @@ import Pager from './pager';
 
 const Blog = ({ posts, pageContext }) => {
 	const { tagsPath, basePath } = useMinimalBlogConfig();
-	console.log(pageContext);
 	return (
 		<Layout>
 			<SEO title="Blog" />
