@@ -267,7 +267,11 @@ const tagTemplate = require.resolve(`./src/templates/tag-query`);
 const tagsTemplate = require.resolve(`./src/templates/tags-query`);
 
 exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
-	const { createPage } = actions;
+	const { createPage, createRedirect } = actions;
+
+	if (themeOptions.redirects) {
+		themeOptions.redirects.forEach(x => createRedirect(x));
+	}
 
 	const { basePath, blogPath, tagsPath } = withDefaults(themeOptions);
 
@@ -312,7 +316,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
 	// })
 
 	const posts = result.data.allPost.nodes;
-	const postsPerPage = 6;
+	const postsPerPage = themeOptions.postsPerPage || 6;
 	const numPages = Math.ceil(posts.length / postsPerPage);
 	const getPagePath = x => path.join(basePath, blogPath, x === 0 ? '' : `${x + 1}`);
 	const postListPages = Array.from({ length: numPages }).map((_, x) => getPagePath(x));
