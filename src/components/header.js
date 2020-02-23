@@ -42,7 +42,7 @@ const Header = () => {
 				<Navigation nav={nav} />
 				{externalLinks && externalLinks.length > 0 && (
 					<div sx={{ 'a:not(:first-of-type)': { ml: 3 }, fontSize: [1, `18px`] }}>
-						{externalLinks.map(({ url, name, icon = null, iconOnly = false }) => (
+						{externalLinks.map(({ url, name, icon = null, iconOnly = true }) => (
 							<Styled.a
 								sx={{ '&.icon-only:hover': { textDecoration: 'none' } }}
 								className={icon && iconOnly ? 'icon-only' : null}
