@@ -43,7 +43,13 @@ const Header = () => {
 				{externalLinks && externalLinks.length > 0 && (
 					<div sx={{ 'a:not(:first-of-type)': { ml: 3 }, fontSize: [1, `18px`] }}>
 						{externalLinks.map(({ url, name, icon = null, iconOnly = false }) => (
-							<Styled.a key={url} href={url} title={name}>
+							<Styled.a
+								sx={{ '&.icon-only:hover': { textDecoration: 'none' } }}
+								className={icon && iconOnly ? 'icon-only' : null}
+								key={url}
+								href={url}
+								title={name}
+							>
 								{icon && <span aria-hidden="true" className={icon} />}
 								{(!icon || !iconOnly) && <span sx={{ '&:not(:first-child)': { ml: 1 } }}>{name}</span>}
 							</Styled.a>
