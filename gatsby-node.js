@@ -68,82 +68,82 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 	});
 
 	createTypes(`
-    interface Post @nodeInterface {
-      id: ID!
-      draft: Boolean
-      slug: String! @slugify
-      title: String!
-      date: Date! @dateformat
-      excerpt(pruneLength: Int = 160): String!
-      body: String!
-      html: String
-      timeToRead: Int!
-      tags: [PostTag]
-      category: PostTag
-      hero: File @fileByRelativePath
-      banner: File @fileByRelativePath
-      description: String
-    }
+		interface Post @nodeInterface {
+			id: ID!
+			draft: Boolean
+			slug: String! @slugify
+			title: String!
+			date: Date! @dateformat
+			excerpt(pruneLength: Int = 160): String!
+			body: String!
+			html: String
+			timeToRead: Int!
+			tags: [PostTag]
+			category: PostTag
+			hero: File @fileByRelativePath
+			banner: File @fileByRelativePath
+			description: String
+		}
 
-    type PostTag {
-      name: String
-      slug: String
-    }
+		type PostTag {
+			name: String
+			slug: String
+		}
 
-    interface Page @nodeInterface {
-      id: ID!
-      slug: String!
-      title: String!
-      excerpt(pruneLength: Int = 160): String!
-      body: String!
-    }
+		interface Page @nodeInterface {
+			id: ID!
+			slug: String!
+			title: String!
+			excerpt(pruneLength: Int = 160): String!
+			body: String!
+		}
 
-    type MdxPost implements Node & Post {
-      draft: Boolean
-      slug: String! @slugify
-      title: String!
-      date: Date! @dateformat
-      excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
-      body: String! @mdxpassthrough(fieldName: "body")
-      html: String! @mdxpassthrough(fieldName: "html")
-      timeToRead: Int! @mdxpassthrough(fieldName: "timeToRead")
-      tags: [PostTag]
-      category: PostTag
-      hero: File @fileByRelativePath
-      banner: File @fileByRelativePath
-      description: String
-    }
+		type MdxPost implements Node & Post {
+			draft: Boolean
+			slug: String! @slugify
+			title: String!
+			date: Date! @dateformat
+			excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
+			body: String! @mdxpassthrough(fieldName: "body")
+			html: String! @mdxpassthrough(fieldName: "html")
+			timeToRead: Int! @mdxpassthrough(fieldName: "timeToRead")
+			tags: [PostTag]
+			category: PostTag
+			hero: File @fileByRelativePath
+			banner: File @fileByRelativePath
+			description: String
+		}
 
-    type MdxPage implements Node & Page {
-      slug: String!
-      title: String!
-      excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
-      body: String! @mdxpassthrough(fieldName: "body")
-    }
+		type MdxPage implements Node & Page {
+			slug: String!
+			title: String!
+			excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
+			body: String! @mdxpassthrough(fieldName: "body")
+		}
 
-    type MinimalBlogConfig implements Node {
-      basePath: String
-      blogPath: String
-      postsPath: String
-      pagesPath: String
-      tagsPath: String
-      externalLinks: [ExternalLink]
-      navigation: [NavigationEntry]
-      showLineNumbers: Boolean
-    }
+		type MinimalBlogConfig implements Node {
+			basePath: String
+			blogPath: String
+			postsPath: String
+			pagesPath: String
+			tagsPath: String
+			externalLinks: [ExternalLink]
+			navigation: [NavigationEntry]
+			showLineNumbers: Boolean
+		}
 
-    type ExternalLink {
+		type ExternalLink {
 			icon: String
 			iconOnly: Boolean
-      name: String!
-      url: String!
-    }
+			name: String!
+			url: String!
+		}
 
-    type NavigationEntry {
-      title: String!
-      slug: String!
-    }
-  `);
+		type NavigationEntry {
+			title: String!
+			slug: String!
+		}
+	`);
 };
 
 exports.sourceNodes = ({ actions, createContentDigest }, themeOptions) => {
