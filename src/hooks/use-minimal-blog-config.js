@@ -10,6 +10,8 @@ const useMinimalBlogConfig = () => {
 				pagesPath
 				tagsPath
 				externalLinks {
+					icon
+					iconOnly
 					name
 					url
 				}

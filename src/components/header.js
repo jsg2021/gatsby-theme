@@ -42,9 +42,10 @@ const Header = () => {
 				<Navigation nav={nav} />
 				{externalLinks && externalLinks.length > 0 && (
 					<div sx={{ 'a:not(:first-of-type)': { ml: 3 }, fontSize: [1, `18px`] }}>
-						{externalLinks.map(link => (
-							<Styled.a key={link.url} href={link.url}>
-								{link.name}
+						{externalLinks.map(({ url, name, icon = null, iconOnly = false }) => (
+							<Styled.a key={url} href={url} title={name}>
+								{icon && <span aria-hidden="true" className={icon} />}
+								{(!icon || !iconOnly) && <span sx={{ '&:not(:first-child)': { ml: 1 } }}>{name}</span>}
 							</Styled.a>
 						))}
 					</div>

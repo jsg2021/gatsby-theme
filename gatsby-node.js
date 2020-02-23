@@ -133,6 +133,8 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
     }
 
     type ExternalLink {
+			icon: String
+			iconOnly: Boolean
       name: String!
       url: String!
     }
