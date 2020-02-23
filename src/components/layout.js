@@ -9,6 +9,7 @@ import CodeStyles from '../styles/code';
 import SEO from './seo';
 import Header from './header';
 import Footer from './footer';
+import Fonts from './fonts';
 
 const Layout = ({ children, className }) => (
 	<Styled.root data-testid="theme-root">
@@ -33,6 +34,7 @@ const Layout = ({ children, className }) => (
 				},
 			})}
 		/>
+		<Fonts />
 		<SEO />
 		<Container sx={{ p: 3 }}>
 			<Header />
