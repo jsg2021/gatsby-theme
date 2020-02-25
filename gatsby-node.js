@@ -56,6 +56,18 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 	});
 
 	createFieldExtension({
+		name: `defaultBoolean`,
+		args: {
+			value: `Boolean!`,
+		},
+		extend({ value }) {
+			return {
+				resolve: (s, _, __, { fieldName: k }) => (s[k] == null ? value : s[k]),
+			};
+		},
+	});
+
+	createFieldExtension({
 		name: `mdxpassthrough`,
 		args: {
 			fieldName: `String!`,
@@ -134,7 +146,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 
 		type ExternalLink {
 			icon: String
-			iconOnly: Boolean
+			iconOnly: Boolean @defaultBoolean(value: true)
 			name: String!
 			url: String!
 		}
