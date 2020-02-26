@@ -10,7 +10,7 @@ export default ({ data }) => {
 
 export const query = graphql`
 	query {
-		allPost(sort: { fields: date, order: DESC }, limit: 3) {
+		allPost(filter: { draft: { ne: true } }, sort: { fields: date, order: DESC }, limit: 3) {
 			nodes {
 				...postListItemFields
 			}
