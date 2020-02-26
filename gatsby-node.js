@@ -82,10 +82,10 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 	createTypes(`
 		interface Post @nodeInterface {
 			id: ID!
-			draft: Boolean
 			slug: String! @slugify
 			title: String!
 			date: Date! @dateformat
+			draft: Boolean
 			excerpt(pruneLength: Int = 160): String!
 			body: String!
 			html: String
@@ -111,10 +111,10 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 		}
 
 		type MdxPost implements Node & Post {
-			draft: Boolean
 			slug: String! @slugify
 			title: String!
 			date: Date! @dateformat
+			draft: Boolean
 			excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
 			body: String! @mdxpassthrough(fieldName: "body")
 			html: String! @mdxpassthrough(fieldName: "html")
@@ -220,6 +220,7 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId, createContentDig
 			slug: node.frontmatter.slug ? node.frontmatter.slug : undefined,
 			title: node.frontmatter.title,
 			date: node.frontmatter.date,
+			draft: node.frontmatter.draft,
 			tags: modifiedTags,
 			banner: node.frontmatter.banner,
 			hero: node.frontmatter.hero,
