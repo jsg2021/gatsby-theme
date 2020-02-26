@@ -203,25 +203,24 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId, createContentDig
 	const fileNode = getNode(node.parent);
 	const source = fileNode.sourceInstanceName;
 
+	const tagify = tag => ({
+		name: tag,
+		slug: kebabCase(tag),
+	});
+
+	const tags = !node.frontmatter.tags ? null : node.frontmatter.tags.map(tagify);
+
+	const category = !node.frontmatter.category ? null : tagify(node.frontmatter.category);
+
 	// Check for "posts" and create the "Post" type
 	if (node.internal.type === `Mdx` && source === postsPath) {
-		let modifiedTags;
-
-		if (node.frontmatter.tags) {
-			modifiedTags = node.frontmatter.tags.map(tag => ({
-				name: tag,
-				slug: kebabCase(tag),
-			}));
-		} else {
-			modifiedTags = null;
-		}
-
 		const fieldData = {
-			slug: node.frontmatter.slug ? node.frontmatter.slug : undefined,
+			slug: node.frontmatter.slug || undefined,
 			title: node.frontmatter.title,
 			date: node.frontmatter.date,
 			draft: node.frontmatter.draft,
-			tags: modifiedTags,
+			category,
+			tags,
 			banner: node.frontmatter.banner,
 			hero: node.frontmatter.hero,
 			description: node.frontmatter.description,
