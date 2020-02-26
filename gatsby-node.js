@@ -42,8 +42,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 
 	const slugify = source => {
 		const slug = source.slug ? source.slug : kebabCase(source.title);
-
-		return `/${basePath}/${slug}`.replace(/\/\/+/g, `/`);
+		return path.join(basePath, slug);
 	};
 
 	createFieldExtension({
