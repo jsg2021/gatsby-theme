@@ -41,6 +41,7 @@ export const query = graphql`
 `;
 
 const None = () => null;
+const Dash = () => ` — `;
 
 const Post = ({ children, data: { post }, renderCommentCount = None }) => (
 	<Layout>
@@ -55,13 +56,13 @@ const Post = ({ children, data: { post }, renderCommentCount = None }) => (
 			<time>{post.date}</time>
 			{renderCommentCount()}
 			{post.tags && (
-				<React.Fragment>
-					{` — `}
+				<>
+					<Dash />
 					<ItemTags tags={post.tags} />
-				</React.Fragment>
+				</>
 			)}
-			{` — `}
-			<span>{post.timeToRead} min read</span>
+
+			<TimeToRead {...post} />
 		</p>
 		<section sx={{ my: 5, '.gatsby-resp-image-wrapper': { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
 			<MDXRenderer>{post.body}</MDXRenderer>
@@ -69,5 +70,16 @@ const Post = ({ children, data: { post }, renderCommentCount = None }) => (
 		{children}
 	</Layout>
 );
+
+function TimeToRead({ timeToRead = null }) {
+	return (
+		timeToRead && (
+			<>
+				<Dash />
+				<span>{timeToRead} min read</span>
+			</>
+		)
+	);
+}
 
 export default Post;
