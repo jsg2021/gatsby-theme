@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { jsx, Styled, Image } from 'theme-ui';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
+import Attachments from './attachments';
 import Layout from './layout';
 import ItemTags from './item-tags';
 import SEO from './seo';
@@ -37,6 +38,11 @@ export const query = graphql`
 		}
 		timeToRead
 		title
+		attachments {
+			src: publicURL
+			size: prettySize
+			name: base
+		}
 	}
 `;
 
@@ -66,6 +72,7 @@ const Post = ({ children, data: { post }, renderCommentCount = None }) => (
 		</p>
 		<section sx={{ my: 5, '.gatsby-resp-image-wrapper': { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
 			<MDXRenderer>{post.body}</MDXRenderer>
+			<Attachments items={post.attachments} />
 		</section>
 		{children}
 	</Layout>

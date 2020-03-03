@@ -94,6 +94,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 			hero: File @fileByRelativePath
 			banner: File @fileByRelativePath
 			description: String
+			attachments: [File] @fileByRelativePath
 		}
 
 		type PostTag {
@@ -123,6 +124,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
 			hero: File @fileByRelativePath
 			banner: File @fileByRelativePath
 			description: String
+			attachments: [File] @fileByRelativePath
 		}
 
 		type MdxPage implements Node & Page {
@@ -223,6 +225,7 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId, createContentDig
 			banner: node.frontmatter.banner,
 			hero: node.frontmatter.hero,
 			description: node.frontmatter.description,
+			attachments: node.frontmatter.attachments || [],
 		};
 
 		const mdxPostId = createNodeId(`${node.id} >>> MdxPost`);
