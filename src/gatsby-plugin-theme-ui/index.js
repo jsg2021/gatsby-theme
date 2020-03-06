@@ -43,6 +43,7 @@ export default merge(tailwind, {
 		heading: tailwind.colors.black,
 		divide: tailwind.colors.gray[4],
 		tagCloud: tailwind.colors.gray[2],
+		aside: tailwind.colors.gray[2],
 		modes: {
 			dark: {
 				text: tailwind.colors.gray[4],
@@ -53,6 +54,7 @@ export default merge(tailwind, {
 				heading: tailwind.colors.white,
 				divide: tailwind.colors.gray[8],
 				tagCloud: tailwind.colors.black,
+				aside: tailwind.colors.black,
 			},
 		},
 	},

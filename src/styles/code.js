@@ -1,6 +1,12 @@
 import { tint } from '@theme-ui/color';
 
 export default {
+	aside: {
+		bg: 'aside',
+		padding: '1em 2em',
+		margin: '2em -2em',
+		borderRadius: '1em',
+	},
 	'.twitter-tweet': {
 		margin: '0 auto',
 	},
@@ -50,10 +56,12 @@ export default {
 		display: `inline-block`,
 	},
 	'p > code, li > code': {
-		bg: `rgb(1, 22, 39)`,
-		color: `rgb(214, 222, 235)`,
+		bg: `text`,
+		color: `background`,
+		m: 1,
 		px: 2,
 		py: 1,
+		borderRadius: 5,
 	},
 	'.gatsby-highlight': {
 		fontSize: 1,
