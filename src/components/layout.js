@@ -36,7 +36,7 @@ const Layout = ({ children, className }) => (
 		/>
 		<Fonts />
 		<SEO />
-		<Container sx={{ p: 3 }}>
+		<Container sx={{ p: 3, overflow: ['hidden', null, null, 'visible'] }}>
 			<Header />
 			<Box as="main" css={css({ ...CodeStyles })} className={className}>
 				{children}
