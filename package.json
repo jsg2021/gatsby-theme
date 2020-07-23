@@ -23,7 +23,7 @@
     "gatsby-plugin-sharp": "^2.4.5",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-plugin-twitter": "^2.1.19",
-    "gatsby-remark-embedder": "^2.0.0",
+    "gatsby-remark-embedder": "^3.0.0",
     "gatsby-remark-images": "^3.1.44",
     "gatsby-remark-responsive-iframe": "^2.2.32",
     "gatsby-source-filesystem": "^2.1.48",
