@@ -14,7 +14,7 @@
     "@mdx-js/mdx": "^1.5.5",
     "@theme-ui/color": "^0.3.1",
     "@theme-ui/components": "^0.3.1",
-    "@theme-ui/presets": "^0.3.0",
+    "@theme-ui/presets": "^0.8.4",
     "clsx": "^1.1.0",
     "gatsby-plugin-catch-links": "^2.1.25",
     "gatsby-plugin-feed": "^2.3.27",
